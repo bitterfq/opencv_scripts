@@ -21,10 +21,22 @@ while True:  # Continous reading of video
     for (x,y,w,h) in faces:
         print(x,y,w,h) # prints region of interest (roi), detects face is showing up in frame
         roi_gray = gray[y:y+h, x:x+w] #gather the pixels only in the roi
-        img = "roi_image.png"
-        cv2.imwrite(img, roi_gray)
+        roi_color = frame[y:y+h, x:x+h]
 
-    
+        # recognize roi - deep learned model to predict -- tensorflow, pytorch, scikit-learn
+
+        img = "roi_image.png"
+        img2 = "roi_color_image.png"
+        cv2.imwrite(img, roi_gray)
+        cv2.imwrite(img2, roi_color)
+
+        #drawing a rectangle around roi
+        color = (255, 0, 0) #BGR 0-255
+        stroke = 2 # thickness of line
+        cv2.rectangle(frame, (x,y), (x+w, y+h), color, stroke) ## rectange(frame, start x&y coord, end x&y coord)
+                                                ## rectangle around the roi basically
+
+
     cv2.imshow('frame', frame) #imgshow doesn't work
     cv2.waitKey(1) # linux constant video frame works with waitKey(1)
     if cv2.waitKey(20) & 0xFF == ord('q'):

@@ -6,7 +6,8 @@ import cv2
 
 face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_alt2.xml')
 
-
+recognizer = cv2.face.createLBPHFaceRecognizer()
+recognizer.read("trainner.yml") # read trained model from faces-train.py
 
 cap = cv2.VideoCapture(0) #Single capture device 
 
@@ -24,6 +25,9 @@ while True:  # Continous reading of video
         roi_color = frame[y:y+h, x:x+h]
 
         # recognize roi - deep learned model to predict -- tensorflow, pytorch, scikit-learn
+        id_, conf = recognizer.predict(roi_gray) # predict on region of interest, id_ and confidence
+        if conf>=45 and conf <= 85:
+            print(id_)
 
         img = "roi_image.png"
         img2 = "roi_color_image.png"

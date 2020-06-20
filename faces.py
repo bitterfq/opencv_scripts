@@ -7,7 +7,7 @@ import cv2
 face_cascade = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_alt2.xml')
 
 recognizer = cv2.face.createLBPHFaceRecognizer()
-recognizer.read("trainner.yml") # read trained model from faces-train.py
+recognizer.read("trainner.yml") # read trained model from faces-train.py --atribute error
 
 cap = cv2.VideoCapture(0) #Single capture device 
 

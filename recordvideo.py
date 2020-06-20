@@ -54,7 +54,7 @@ dims = get_dims(cap, res=def_res)
 #writing  method -- here we get def video type
 video_type_cv2 = get_video_type(filename)
 # writes out video
-out = cv2.VideoWriter(filenamem, video_type_cv2, frames_per_second, dims)
+out = cv2.VideoWriter(filename, video_type_cv2, frames_per_second, dims)
 while True:  # Continous reading of video
     ret, frame = cap.read()
     
